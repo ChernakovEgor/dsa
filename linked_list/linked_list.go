@@ -7,10 +7,18 @@ type node[T any] struct {
 
 type LinkedList[T any] struct {
 	root *node[T]
-	tail node[T]
+	tail *node[T]
 }
 
-func (l LinkedList[T]) Len() int
+func (l LinkedList[T]) Len() (length int) {
+	curr := l.root
+	for curr != nil {
+		length++
+		curr = curr.next
+	}
+	return
+}
+
 func (l *LinkedList[T]) InsertAt(int)
 func (l *LinkedList[T]) Remove(T) T
 func (l *LinkedList[T]) RemoveAt(int) T
